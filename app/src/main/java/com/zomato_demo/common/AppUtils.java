@@ -76,22 +76,22 @@ public class AppUtils {
 
     @SuppressLint("SetTextI18n")
     @BindingAdapter({"CheckAndset","currency"})
-    public static void setText(TextView textView, String text,String currency) {
-        if (text!=null&&!text.matches("null")||currency!=null&&!currency.matches("null")) {
+    public static void setText(TextView textView, int text,String currency) {
+        if (currency!=null&&!currency.matches("null")) {
             switch (text) {
-                case "1":
+                case 1:
                     textView.setText(currency);
                     break;
-                case "2":
+                case 2:
                     textView.setText(currency + currency);
                     break;
-                case "3":
+                case 3:
                     textView.setText(currency + currency + currency);
                     break;
-                case "4":
+                case 4:
                     textView.setText(currency + currency + currency + currency);
                     break;
-                case "5":
+                case 5:
                     textView.setText(currency + currency + currency + currency + currency);
                     break;
                 default:

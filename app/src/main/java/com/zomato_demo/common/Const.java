@@ -53,6 +53,7 @@ public class Const {
 
     public static class Local {
         public static final String RESTAURANT = "restaurant";
+        public static final String SEARCH = "search";
         public static final String ITEM_POSITION = "item_position";
         public static final String NO_OF_PEOPLES = "no_of_peoples";
         public static final String BANNER = "banner";

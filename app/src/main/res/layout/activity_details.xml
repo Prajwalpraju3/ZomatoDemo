@@ -6,9 +6,11 @@
     <data>
         <import type="androidx.core.content.ContextCompat"/>
 
+
+
         <variable
-            name="details"
-            type="com.zomato_demo.models.DetailsModel" />
+            name="restorent"
+            type="com.zomato_demo.models.Restaurant_" />
 
         <variable
             name="activity"
@@ -53,7 +55,7 @@
                     android:scrollbars="none"
                     android:textColor="@color/white"
                     android:textSize="19sp"
-                    android:text="@{details.name}" />
+                    android:text="@{restorent.name}" />
 
             </RelativeLayout>
             <RelativeLayout
@@ -81,7 +83,7 @@
                 android:id="@+id/nv_banner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-               tools:imageUrl="@{details.featuredImage}"
+               tools:imageUrl="@{restorent.featuredImage}"
                 android:scaleType="centerCrop" />
 
             <RelativeLayout
@@ -103,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="@color/white"
-                        android:text="@{details.name}"
+                        android:text="@{restorent.name}"
                         android:gravity="start"/>
 
                     <TextView
@@ -112,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="@color/white"
-                        android:text="@{details.location.address}"
+                        android:text="@{restorent.location.address}"
                         android:drawablePadding="5dp"
                         android:gravity="center|start"/>
 
@@ -151,7 +153,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="5dp"
                                 android:textColor="@color/white"
-                                android:text="@{`Cuisines : `+details.cuisines}"
+                                android:text="@{`Cuisines : `+restorent.cuisines}"
                                 android:gravity="center|start"/>
 
 
@@ -177,9 +179,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="@{details.userRating.ratingText}"
+                                android:text="@{restorent.userRating.ratingText}"
                                 android:paddingTop="3dp"
-                                app:constraint="@{details.userRating.ratingColor}"
+                                app:constraint="@{restorent.userRating.ratingColor}"
                                 android:paddingBottom="3dp"
                                 android:paddingRight="5dp"
                                 android:paddingLeft="5dp"
@@ -220,7 +222,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{` `+details.averageCostForTwo+``+details.currency}"/>
+                    android:text="@{` `+restorent.averageCostForTwo+``+restorent.currency}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -238,8 +240,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:CheckAndset="@{details.priceRange}"
-                    app:currency="@{details.currency}"
+                    app:CheckAndset="@{restorent.priceRange}"
+                    app:currency="@{restorent.currency}"
                     />
 
             </LinearLayout>
@@ -258,7 +260,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{details.isDeliveringNow.matches(`1`)?` Yes`:` No`}"/>
+                    android:text="@{restorent.isDeliveringNow.equals(1)?` Yes`:` No`}"/>
             </LinearLayout>
 
             <LinearLayout

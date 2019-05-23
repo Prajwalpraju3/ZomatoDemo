@@ -9,6 +9,7 @@ import com.zomato_demo.ZomotoDetails.DetailsActivity;
 import com.zomato_demo.databinding.ItemDetailsBinding;
 import com.zomato_demo.models.DetailsModel;
 import com.zomato_demo.models.ListModel;
+import com.zomato_demo.models.Restaurant_;
 
 import java.util.HashMap;
 
@@ -28,7 +29,7 @@ public class ListViewHolder extends RecyclerView.ViewHolder {
                 int pos = getAdapterPosition();
                 if (pos != -1) {
 
-                    DetailsModel model = binding.getDetailsModel();
+                    Restaurant_ model = binding.getRestorent();
                     if (!TextUtils.isEmpty(model.getId())) {
 
 

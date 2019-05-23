@@ -2,7 +2,7 @@ package com.zomato_demo.ViewModels;
 
 import android.app.Application;
 
-import com.zomato_demo.models.DetailsModel;
+import com.zomato_demo.models.Restaurant_;
 import com.zomato_demo.NetworkManager.DetailsManager;
 
 import androidx.annotation.NonNull;
@@ -14,26 +14,26 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class DeatailsViewModel extends BaseViewModel {
 
-    private LiveData<DetailsModel> liveData;
-    private ObservableField<DetailsModel> observableField = new ObservableField<>();
+    private LiveData<Restaurant_> liveData;
+    private ObservableField<Restaurant_> observableField = new ObservableField<>();
     DetailsManager detailsManager;
     public DeatailsViewModel(Application application, String id){
         super(application);
         detailsManager = new DetailsManager(application);
         callNextPageResult(id);
-//        this.liveData = new StoreDetailsManager(application).getDetailsModelRequest(page,id);
+//        this.liveData = new StoreDetailsManager(application).getListModelRequest(page,id);
     }
 
     private void callNextPageResult(String id){
-        this.liveData= detailsManager.getDetailsModelRequest(id);
+        this.liveData= detailsManager.getRestaurant_Request(id);
     }
 
 
-    public LiveData<DetailsModel> getObservable() {
+    public LiveData<Restaurant_> getObservable() {
         return liveData;
     }
 
-    public void setModel(DetailsModel model) {
+    public void setModel(Restaurant_ model) {
         this.observableField.set(model);
     }
 

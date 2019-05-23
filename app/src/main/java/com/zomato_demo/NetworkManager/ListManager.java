@@ -3,32 +3,33 @@ package com.zomato_demo.NetworkManager;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.zomato_demo.Interfaces.ApiInterface;
-import com.zomato_demo.Interfaces.DataCallBackListener;
-import com.zomato_demo.models.Restaurant_;
-import com.zomato_demo.R;
-import com.zomato_demo.common.AppUtils;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.zomato_demo.Interfaces.ApiInterface;
+import com.zomato_demo.Interfaces.DataCallBackListener;
+import com.zomato_demo.R;
+import com.zomato_demo.common.AppUtils;
+import com.zomato_demo.models.ListModel;
+
 import retrofit2.Call;
 
 
-public class DetailsManager {
+public class ListManager {
     private Context context;
-    private Call<Restaurant_> modelCall;
+    private Call<ListModel> modelCall;
     private PreferenceManager preferenceManager;
-    private final MutableLiveData<Restaurant_> data;
+    private final MutableLiveData<ListModel> data;
     private int page_count=10;
-    public DetailsManager(Context context){
+    public ListManager(Context context){
         this.context=context;
         preferenceManager=new PreferenceManager(context);
         data = new MutableLiveData<>();
     }
 
-    public LiveData<Restaurant_> getRestaurant_Request(String id) {
+    public LiveData<ListModel> getListModelRequest(String id,String lat,String lon) {
         //oAuthentication
-//        final MutableLiveData<Restaurant_> data = new MutableLiveData<>();
+//        final MutableLiveData<ListViewModel> data = new MutableLiveData<>();
         if (!AppUtils.isNetworkAvailable(context)) {
             Toast.makeText(context, R.string.no_internet, Toast.LENGTH_SHORT).show();
             return data;
@@ -36,13 +37,14 @@ public class DetailsManager {
 
        ApiInterface storeInterface = NetworkGenerator.getAuthClient(context).create(ApiInterface.class);
 //        modelCall = storeInterface.getDetails("16774318");
-        modelCall = storeInterface.getDetails(id);
+        modelCall = storeInterface.getLists("city",id,lat,lon);
         BaseManager baseManager = new BaseManager(context);
         baseManager.sendRequest(modelCall, new DataCallBackListener() {
             @Override
             public void onResponse(Object body) {
-                if (body instanceof Restaurant_) {
-                    Restaurant_ detailsModel = (Restaurant_) body;
+                if (body instanceof ListModel) {
+                    ListModel detailsModel = (ListModel) body;
+                    Toast.makeText(context,detailsModel.getRestaurants().get(0).getRestaurant().getName(),Toast.LENGTH_SHORT).show();
                     data.setValue(detailsModel);
 
                 }

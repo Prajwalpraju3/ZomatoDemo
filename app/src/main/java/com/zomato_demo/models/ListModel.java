@@ -6,49 +6,48 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ListModel {
-
     @SerializedName("results_found")
     @Expose
-    private String resultsFound;
+    private Integer resultsFound;
     @SerializedName("results_start")
     @Expose
-    private String resultsStart;
+    private Integer resultsStart;
     @SerializedName("results_shown")
     @Expose
-    private String resultsShown;
+    private Integer resultsShown;
     @SerializedName("restaurants")
     @Expose
-    private List<DetailsModel> restaurants = null;
+    private List<Restaurant> restaurants = null;
 
-    public String getResultsFound() {
+    public Integer getResultsFound() {
         return resultsFound;
     }
 
-    public void setResultsFound(String resultsFound) {
+    public void setResultsFound(Integer resultsFound) {
         this.resultsFound = resultsFound;
     }
 
-    public String getResultsStart() {
+    public Integer getResultsStart() {
         return resultsStart;
     }
 
-    public void setResultsStart(String resultsStart) {
+    public void setResultsStart(Integer resultsStart) {
         this.resultsStart = resultsStart;
     }
 
-    public String getResultsShown() {
+    public Integer getResultsShown() {
         return resultsShown;
     }
 
-    public void setResultsShown(String resultsShown) {
+    public void setResultsShown(Integer resultsShown) {
         this.resultsShown = resultsShown;
     }
 
-    public List<DetailsModel> getRestaurants() {
+    public List<Restaurant> getRestaurants() {
         return restaurants;
     }
 
-    public void setRestaurants(List<DetailsModel> restaurants) {
+    public void setRestaurants(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
     }
 

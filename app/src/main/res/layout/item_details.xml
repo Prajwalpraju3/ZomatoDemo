@@ -3,16 +3,29 @@
 
     <data>
 
-        <variable
-            name="detailsModel"
-            type="com.zomato_demo.models.DetailsModel"/>
+     <variable
+         name="restorent"
+         type="com.zomato_demo.models.Restaurant_" />
 
     </data>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="@string/app_name"
+            android:text="@{restorent.name}"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/greay"/>
 
     </LinearLayout>
 </layout>

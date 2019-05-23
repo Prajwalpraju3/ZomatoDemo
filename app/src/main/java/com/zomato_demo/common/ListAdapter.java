@@ -6,8 +6,12 @@ import android.view.ViewGroup;
 
 import com.zomato_demo.BR;
 import com.zomato_demo.R;
+import com.zomato_demo.ZomotoList.MainActivity;
 import com.zomato_demo.databinding.ItemDetailsBinding;
+import com.zomato_demo.models.DetailsModel;
 import com.zomato_demo.models.ListModel;
+import com.zomato_demo.models.Restaurant;
+import com.zomato_demo.models.Restaurant_;
 
 import java.util.List;
 
@@ -19,14 +23,15 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private List<ListModel> list;
+    private List<Restaurant> list;
     private String title;
 
-    public ListAdapter(String title, final Context context, List<ListModel> list) {
+    public ListAdapter(String title, final Context context, List<Restaurant> list) {
         this.context = context;
         this.list = list;
         this.title = title;
     }
+
 
     @NonNull
     @Override
@@ -40,18 +45,12 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (holder instanceof ListViewHolder) {
             ListViewHolder listViewHolder= (ListViewHolder) holder;
-            ListModel listModel = list.get(position);
+            Restaurant_ listModel = list.get(position).getRestaurant();
             ItemDetailsBinding binding = (ItemDetailsBinding) listViewHolder.getBinding();
-            binding.setVariable(BR.detailsModel,listModel);
+            binding.setVariable(BR.restorent,listModel);
             binding.executePendingBindings();
 
         }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        int VIEW_TYPE_ITEM = 0;
-        return list.get(position) == null ? VIEW_TYPE_ITEM : VIEW_TYPE_ITEM;
     }
 
     @Override
