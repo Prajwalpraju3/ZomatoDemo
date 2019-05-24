@@ -19,7 +19,6 @@ import com.zomato_demo.R;
 
 import androidx.databinding.BindingAdapter;
 
-import java.util.Currency;
 
 public class AppUtils {
 
@@ -28,7 +27,7 @@ public class AppUtils {
         try {
             if (imageUrl != null) {
                 RequestOptions requestOptions = new RequestOptions();
-                Glide.with(view.getContext()).setDefaultRequestOptions(requestOptions).load(imageUrl).apply(requestOptions.placeholder(R.drawable.ic_launcher_background)).into(view);
+                Glide.with(view.getContext()).setDefaultRequestOptions(requestOptions).load(imageUrl).apply(requestOptions.placeholder(R.drawable.background)).into(view);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -115,10 +114,6 @@ public class AppUtils {
                     }
 
                 }
-//                for (int i = 0; i < info.length; i++)
-//                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-//                        return true;
-//                    }
             }
 
         }

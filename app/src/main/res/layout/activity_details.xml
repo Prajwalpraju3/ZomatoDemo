@@ -19,13 +19,22 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ZomotoDetails.DetailsActivity">
 
         <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:id="@+id/toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -39,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:padding="16dp"
+                    android:padding="@dimen/dp16"
                     android:src="@drawable/ic_left"
                     android:contentDescription="@string/back" />
 
@@ -48,35 +57,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp"
                     android:layout_toEndOf="@id/iv_back"
                     android:scrollHorizontally="true"
                     android:scrollbars="none"
                     android:textColor="@color/white"
-                    android:textSize="19sp"
+                    android:textSize="@dimen/sp19"
                     android:text="@{restorent.name}" />
 
             </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                tools:context=".ZomotoDetails.DetailsActivity">
 
-                <ProgressBar
-                    android:id="@+id/pg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    />
-
-            </RelativeLayout>
         </LinearLayout>
 
         <FrameLayout
+            android:id="@+id/fl"
             android:layout_width="match_parent"
-            android:layout_height="340dp"
+            android:layout_height="@dimen/dp340"
+            android:layout_below="@+id/toolbar"
             android:orientation="vertical">
 
             <ImageView
@@ -90,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/black_alpha_60"
-                android:padding="16dp">
+                android:padding="@dimen/dp16">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,7 +99,7 @@
                         android:id="@+id/tv_place_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/sp14"
                         android:textColor="@color/white"
                         android:text="@{restorent.name}"
                         android:gravity="start"/>
@@ -112,7 +108,7 @@
                         android:id="@+id/tv_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/sp14"
                         android:textColor="@color/white"
                         android:text="@{restorent.location.address}"
                         android:drawablePadding="5dp"
@@ -120,9 +116,9 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/dp1"
                         android:background="@color/white"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/dp10"
                         />
 
 
@@ -132,7 +128,7 @@
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/dp10"
                         >
 
                         <LinearLayout
@@ -141,7 +137,7 @@
                             android:orientation="horizontal"
                             android:layout_alignParentStart="true"
                             android:layout_toStartOf="@+id/ll_trend"
-                            android:layout_marginEnd="3dp"
+                            android:layout_marginEnd="@dimen/dp3"
                             android:gravity="center_vertical"
                             >
 
@@ -151,7 +147,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:layout_marginStart="5dp"
+                                android:layout_marginStart="@dimen/dp3"
                                 android:textColor="@color/white"
                                 android:text="@{`Cuisines : `+restorent.cuisines}"
                                 android:gravity="center|start"/>
@@ -178,13 +174,13 @@
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/sp12"
                                 android:text="@{restorent.userRating.ratingText}"
-                                android:paddingTop="3dp"
+                                android:paddingTop="@dimen/dp3"
                                 app:constraint="@{restorent.userRating.ratingColor}"
-                                android:paddingBottom="3dp"
-                                android:paddingRight="5dp"
-                                android:paddingLeft="5dp"
+                                android:paddingBottom="@dimen/dp3"
+                                android:paddingRight="@dimen/dp5"
+                                android:paddingLeft="@dimen/dp5"
 
 
                                 />
@@ -206,18 +202,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/fl"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/dp16"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp16"
                     android:text="@string/average"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -225,37 +222,17 @@
                     android:text="@{` `+restorent.averageCostForTwo+``+restorent.currency}"/>
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/dp16"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/price"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:CheckAndset="@{restorent.priceRange}"
-                    app:currency="@{restorent.currency}"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp16"
                     android:text="@string/delivering_now"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -266,7 +243,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/dp16"
                 android:orientation="horizontal">
 
                 <Button
@@ -278,11 +255,26 @@
 
         </LinearLayout>
 
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <ProgressBar
+                android:id="@+id/pg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
 
 
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
 
 </layout>

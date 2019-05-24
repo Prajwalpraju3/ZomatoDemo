@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 
 import com.zomato_demo.R;
 import com.zomato_demo.ViewModels.DeatailsViewModel;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         binding.setLocation(0);
         ListViewModel.Factory factory = new ListViewModel.Factory(getApplication(), "", "", "");
         listViewModel = ViewModelProviders.of(MainActivity.this, factory).get(ListViewModel.class);
+        binding.ll.setVisibility(View.GONE);
+        binding.rl.setVisibility(View.VISIBLE);
         observeViewModel();
         binding.etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -52,15 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(final Editable s) {
-                listViewModel.callNextPageResult(s.toString()," "," ");
-//                Handler handler = new Handler();
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//
-//                    }
-//                }, 10);
+                binding.ll.setVisibility(View.GONE);
+                binding.rl.setVisibility(View.VISIBLE);
+                listViewModel.callNextPageResult(s.toString(),"","");
             }
         });
     }
@@ -72,16 +69,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(ListModel listModel) {
                 if (listModel != null) {
+                    binding.ll.setVisibility(View.VISIBLE);
+                    binding.rl.setVisibility(View.GONE);
                     RecyclerView recyclerView = binding.rvList;
-                    recyclerView.addItemDecoration(new SpacesItemDecoration(30));
                     linearLayoutManager = new LinearLayoutManager(recyclerView.getContext(), RecyclerView.VERTICAL, false);
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView.setNestedScrollingEnabled(true);
 
-                    Log.d("ttt", "onChanged: ------>"+listModel.getRestaurants().get(0).getRestaurant().getName());
 
                     if (listModel.getRestaurants().size() > 0) {
-                        setupRecyclerView("temp", recyclerView, listModel.getRestaurants());
+                        setupRecyclerView(recyclerView, listModel.getRestaurants());
 
                     }
                 }
@@ -91,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
     ListAdapter listAdapter;
 
-    private void setupRecyclerView(String title, final RecyclerView rvStoreList, final List<Restaurant> detailsModels) {
-        listAdapter = new ListAdapter(title, this, detailsModels);
+    private void setupRecyclerView( final RecyclerView rvStoreList, final List<Restaurant> detailsModels) {
+        listAdapter = new ListAdapter( this, detailsModels);
         rvStoreList.setAdapter(listAdapter);
 
     }

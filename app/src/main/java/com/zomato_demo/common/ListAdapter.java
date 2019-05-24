@@ -24,12 +24,11 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
     private List<Restaurant> list;
-    private String title;
 
-    public ListAdapter(String title, final Context context, List<Restaurant> list) {
+    public ListAdapter( final Context context, List<Restaurant> list) {
         this.context = context;
         this.list = list;
-        this.title = title;
+
     }
 
 
@@ -37,7 +36,7 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemDetailsBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_details, parent, false);
-        return new ListViewHolder(context, binding.getRoot(),title);
+        return new ListViewHolder(context, binding.getRoot());
     }
 
     @Override

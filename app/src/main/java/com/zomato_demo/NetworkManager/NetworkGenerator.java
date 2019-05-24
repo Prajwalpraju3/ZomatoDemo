@@ -21,8 +21,6 @@ public class NetworkGenerator {
     //customize it to generic more working in progress...
 
     private static Retrofit retrofit = null;
-    private static final String BASEAUTH_USERNAME = "raghu";
-    private static final String BASEAUTH_PASSWORD = "VkPuma!55@22ft";
 
     public NetworkGenerator() {
 

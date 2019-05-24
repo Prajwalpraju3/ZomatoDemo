@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ListViewHolder extends RecyclerView.ViewHolder {
     ItemDetailsBinding binding;
 
-    public ListViewHolder(final Context context, View view, final String title) {
+    public ListViewHolder(final Context context, View view) {
         super(view);
         binding = DataBindingUtil.bind(view);
         view.setOnClickListener(new View.OnClickListener() {

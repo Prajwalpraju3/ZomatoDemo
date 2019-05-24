@@ -28,23 +28,19 @@ public class ListManager {
     }
 
     public LiveData<ListModel> getListModelRequest(String id,String lat,String lon) {
-        //oAuthentication
-//        final MutableLiveData<ListViewModel> data = new MutableLiveData<>();
         if (!AppUtils.isNetworkAvailable(context)) {
             Toast.makeText(context, R.string.no_internet, Toast.LENGTH_SHORT).show();
             return data;
         }
 
        ApiInterface storeInterface = NetworkGenerator.getAuthClient(context).create(ApiInterface.class);
-//        modelCall = storeInterface.getDetails("16774318");
-        modelCall = storeInterface.getLists("city",id,lat,lon);
+        modelCall = storeInterface.getLists("",id,lat,lon);
         BaseManager baseManager = new BaseManager(context);
         baseManager.sendRequest(modelCall, new DataCallBackListener() {
             @Override
             public void onResponse(Object body) {
                 if (body instanceof ListModel) {
                     ListModel detailsModel = (ListModel) body;
-                    Toast.makeText(context,detailsModel.getRestaurants().get(0).getRestaurant().getName(),Toast.LENGTH_SHORT).show();
                     data.setValue(detailsModel);
 
                 }

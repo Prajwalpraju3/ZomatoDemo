@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -32,12 +33,13 @@ public class DetailsActivity extends AppCompatActivity {
         binding.setActivity(DetailsActivity.this);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            if (!TextUtils.isEmpty(bundle.getString(Const.Local.ID))) {
-                res_id = bundle.getString(Const.Local.ID);
+            if (!TextUtils.isEmpty(bundle.getString(Const.Params.ID))) {
+                res_id = bundle.getString(Const.Params.ID);
             }
         }
 
         binding.pg.setVisibility(View.VISIBLE);
+        binding.ll.setVisibility(View.GONE);
 
 
         DeatailsViewModel.Factory factory = new DeatailsViewModel.Factory(getApplication(), res_id);
@@ -49,37 +51,23 @@ public class DetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("http://zoma.to/r/"+id));
+                    Uri myAction = Uri.parse("http:" + id);
+                    PackageManager packageManager = getPackageManager();
+                    Intent intent = packageManager.getLaunchIntentForPackage("com.application.zomato");
+
+                    if (intent != null) {
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(myAction);
+                        startActivity(intent);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-//                try {
-//                    Toast.makeText(DetailsActivity.this, id, Toast.LENGTH_LONG).show();
-//                    Uri myAction = Uri.parse("http://" + id);
-//
-//                    PackageManager packageManager = getPackageManager();
-//                    Intent intent = packageManager.getLaunchIntentForPackage("com.application.zomato");
-//
-//                    if (intent != null) {
-//                        intent.setAction(Intent.ACTION_VIEW);
-//                        intent.setData(myAction);
-//                        startActivity(intent);
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
             }
         });
 
     }
 
-
-
-
-    public void nothing() {
-
-    }
 
 
     private void observeViewModel() {
@@ -89,18 +77,14 @@ public class DetailsActivity extends AppCompatActivity {
             public void onChanged(Restaurant_ restaurant) {
                 if (restaurant != null) {
                     binding.pg.setVisibility(View.GONE);
+                    binding.ll.setVisibility(View.VISIBLE);
                     binding.setRestorent(restaurant);
-                    id = restaurant.getId();
+                    id = restaurant.getDeeplink();
 
 
                 }
             }
         });
-    }
-
-
-    public void onButtonClick(View view) {
-
     }
 
 
